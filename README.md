@@ -1,2 +1,2 @@
-# hpcw_dotfiles
-My dotfiles for osx/mint
+# HPCW .dotfiles
+.dotfiles used in my various enviroments
