@@ -1,0 +1,142 @@
+#!/usr/bin/env bash
+
+# Exports
+export DROPBOX_DIR="${HOME}/Dropbox"
+export SRC_DIR="${HOME}/src"
+export VM_DIR="${HOME}/vms"
+export SCRIPTS_DIR="${SRC_DIR}/hpcw/hpcw_dotfiles/scripts"
+export DOTFILES_DIR="${SRC_DIR}/hpcw/hpcw_dotfiles/scripts"
+export PATH="$PATH:${SCRIPTS_DIR}"
+
+#### Navigation Shortcuts
+alias cdprofile="func_cd ${DOTFILES_DIR}"
+alias cdscripts="func_cd ${SCRIPTS_DIR}"
+alias cdsrc="func_cd ${SRC_DIR}"
+alias cdvm="func_cd ${VM_DIR}"
+alias cddb="func_cd ${DROPBOX_DIR}"
+alias cdd="func_cd ~/Documents"
+alias cddl="func_cd ~/Downloads"
+
+#### Bash Profile Shortcuts
+alias src='source ~/.bash_init'
+alias editenv="code ${DOTFILES_DIR}/"
+alias editprofile="code ${DOTFILES_DIR}/.bash_init"
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
+
+# Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
+[ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
+
+# Vagrant Setup
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+# Make and cd to dir
+alias mdir=func_mdir
+func_mdir() {
+  mkdir -p "$@" && cd "$_"
+}
+# Display the current directory path and its contents every time you clear the screen
+alias c='clear && pwd && l'
+# Only send 4 ping requests, then stop
+alias ping='ping -c 4'
+# Become root
+alias root='sudo su - root'
+# Determine size of a file or total size of a directory
+function fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* *;
+	fi;
+}
+# Use Git’s colored diff when available
+hash git &>/dev/null;
+if [ $? -eq 0 ]; then
+	function diff() {
+		git diff --no-index --color-words "$@";
+	}
+fi;
+
+#### Inter-Web Findings
+alias date='date +%d-%b-%Y'
+alias ..='cd ..'
+alias backup=func_backup
+func_backup() {
+  cp $1{,.bak}
+}
+alias diff=func_diff
+func_diff() {
+  diff $1{.bak,}
+}
+
+# Used for all 'cd' aliases
+func_cd() {
+  cd $1 && c
+}
+
+#### Git
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias ga.='git add .'
+alias gc='git commit'
+alias gp='git push'
+
+#### Vagrant
+alias vup='vagrant up'
+alias vupv='vagrant up --provider=virtualbox'
+alias vdown='vagrant halt'
+alias vr='vagrant reload'
+alias vdes='vagrant destroy -f'
+alias vs='vagrant ssh'
+alias vstat='vagrant status'
+alias vpro='vagrant provision'
+alias vclean='vagrant global-status --prune'
+alias vpl='vagrant plugin list'
+alias vsnap='vagrant snap take'
+alias vslist='vagrant snap list'
+alias vroll='vagrant snap rollback'
+# alias vbl='vagrant box list'
+alias vbl=func_vbl
+func_vbl() {
+  if [ -z $1 ];then
+    vagrant box list
+  else  
+    vagrant box list | grep $1
+  fi
+}
+alias vba=func_vba
+func_vba() {
+  for val in $@
+  do
+    vagrant box add $val $val
+  done
+}
+alias vbr=func_vbr
+func_vbr() {
+  for val in $@
+  do
+    vagrant box remove -f $val
+  done
+}
+alias vbu=func_vbu
+func_vbu() {
+  for val in $@
+  do
+    vbr $val
+    vba $val
+  done
+}
+
+
+
+
+
+
+
