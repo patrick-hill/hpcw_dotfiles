@@ -2,10 +2,10 @@
 
 # Exports
 export DROPBOX_DIR="${HOME}/Dropbox"
-export SRC_DIR="${HOME}/src"
 export VM_DIR="${HOME}/vms"
-export SCRIPTS_DIR="${SRC_DIR}/hpcw/hpcw_dotfiles/scripts"
-export DOTFILES_DIR="${SRC_DIR}/hpcw/hpcw_dotfiles/scripts"
+export SRC_DIR="${HOME}/src"
+export DOTFILES_DIR="${SRC_DIR}/hpcw/hpcw_dotfiles"
+export SCRIPTS_DIR="${DOTFILES_DIR}/scripts"
 export PATH="$PATH:${SCRIPTS_DIR}"
 
 #### Navigation Shortcuts
@@ -18,9 +18,22 @@ alias cdd="func_cd ~/Documents"
 alias cddl="func_cd ~/Downloads"
 
 #### Bash Profile Shortcuts
-alias src='source ~/.bash_init'
-alias editenv="code ${DOTFILES_DIR}/"
-alias editprofile="code ${DOTFILES_DIR}/.bash_init"
+alias src='source ~/.bash_aliases'
+alias editenv="code ${SRC_DIR}/hpcw/hpcw_env_setup"
+alias editprofile="code ${DOTFILES_DIR}/linux/.bash_init"
+
+#### System Shortcuts
+alias log-out="gnome-session-quit"
+
+# Checksum
+alias sha1=func_sha1
+func_sha1() {
+  sha1sum $@
+}
+alias md5=func_md5
+func_md5() {
+  md5sum $@
+}
 
 # Autocorrect typos in path names when using `cd`
 shopt -s cdspell;
