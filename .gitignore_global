@@ -18,3 +18,9 @@ Thumbs.db
 workspace.xml
 rebel_project.xml
 misc.xml
+
+# Vagrant Files
+.vagrant
+ansible.cfg
+ansible/plugins/human_log.py
+ansible/plugins/human_log.pyc

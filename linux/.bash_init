@@ -50,7 +50,8 @@ func_mdir() {
   mkdir -p "$@" && cd "$_"
 }
 # Display the current directory path and its contents every time you clear the screen
-alias c='clear && pwd && l'
+alias c='clear'
+alias cl='clear && pwd && l'
 # Only send 4 ping requests, then stop
 alias ping='ping -c 4'
 # Become root
