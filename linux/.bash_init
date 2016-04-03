@@ -41,15 +41,13 @@ shopt -s cdspell;
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2- | tr ' ' '\n')" scp sftp ssh;
 
-# Vagrant Setup
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
-
 # Make and cd to dir
 alias mdir=func_mdir
 func_mdir() {
   mkdir -p "$@" && cd "$_"
 }
 # Display the current directory path and its contents every time you clear the screen
+alias r='reset && pwd'
 alias c='clear'
 alias cl='clear && pwd && l'
 # Only send 4 ping requests, then stop
@@ -77,6 +75,9 @@ if [ $? -eq 0 ]; then
 	}
 fi;
 
+#### Dirs
+alias l='ls -la'
+
 #### Inter-Web Findings
 alias date='date +%d-%b-%Y'
 alias ..='cd ..'
@@ -103,6 +104,7 @@ alias gc='git commit'
 alias gp='git push'
 
 #### Vagrant
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
 alias vup='vagrant up'
 alias vupv='vagrant up --provider=virtualbox'
 alias vdown='vagrant halt'
@@ -113,10 +115,15 @@ alias vstat='vagrant status'
 alias vpro='vagrant provision'
 alias vclean='vagrant global-status --prune'
 alias vpl='vagrant plugin list'
-alias vsnap='vagrant snap take'
-alias vslist='vagrant snap list'
-alias vroll='vagrant snap rollback'
-# alias vbl='vagrant box list'
+alias vslist='vagrant snapshot list'
+alias vsnap=func_vSnapSave
+func_vSnapSave() {
+    vagrant snapshot save $@
+}
+alias vroll=func_vSnapRestore
+func_vSnapRestore() {
+  vagrant snapshot restore $@
+}
 alias vbl=func_vbl
 func_vbl() {
   if [ -z $1 ];then
@@ -147,10 +154,3 @@ func_vbu() {
     vba $val
   done
 }
-
-
-
-
-
-
-
