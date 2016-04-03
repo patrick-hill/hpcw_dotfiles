@@ -124,6 +124,10 @@ alias vroll=func_vSnapRestore
 func_vSnapRestore() {
   vagrant snapshot restore $@
 }
+alias vsdel=func_vSnapDelete
+func_vSnapDelete() {
+  vagrant snapshot delete $@
+}
 alias vbl=func_vbl
 func_vbl() {
   if [ -z $1 ];then
