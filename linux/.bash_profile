@@ -19,11 +19,11 @@ alias cdgames="func_cd ${GAMES}"
 alias cdenv="func_cd ${SRC_DIR}/hpcw/hpcw_env_setup"
 alias cdvm="func_cd ${VM_DIR}"
 alias cddb="func_cd ${DROPBOX_DIR}"
-alias cdd="func_cd ~/Documents"
-alias cddl="func_cd ~/Downloads"
+alias cdd="func_cd ${HOME}/Documents"
+alias cddl="func_cd ${HOME}/Downloads"
 
 #### Bash Profile Shortcuts
-alias src='source ~/.bash_aliases'
+alias src='source ~/.bash_profile'
 alias editenv="code ${SRC_DIR}/hpcw/hpcw_env_setup"
 alias editprofile="code ${DOTFILES_DIR}/linux/.bash_init"
 
