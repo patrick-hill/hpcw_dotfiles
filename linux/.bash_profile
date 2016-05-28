@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+[[ -r ~/.bashrc ]] && . ~/.bashrc
+
 # Exports
 export DROPBOX_DIR="${HOME}/Dropbox"
 export VM_DIR="${HOME}/vms"
