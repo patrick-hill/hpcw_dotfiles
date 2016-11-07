@@ -1,31 +1,56 @@
 #!/usr/bin/env bash
 
+
+########################################################
+### Vars
+########################################################
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-echo "Setup script running from dir: $DIR"
 dts=$(date +%F_%T)
 os=$(uname)
-
-# This script will backup the current .bash_profile
-# and then symlink to the current OS's .bash_init file
+echo "Setup script running from dir: $DIR"
 
 
-# Backup current .bash_profile
-if [[ -e ~/.bash_profile ]]; then
-  echo "Current profile backed up to: ~/.bash_profile_$dts.bak"
-  mv ~/.bash_profile ~/.bash_profile_$dts.bak
+########################################################
+### .dotfiles Dir
+########################################################
+# Scripts are coded for: ~/.dotfiles as this repo's root
+# confirm this is the case and if not, copy over & continue
+if [ "${DIR}" != "${HOME}/.dotfiles" ]; then
+
+    echo DIR is: ${DIR}
+    echo COMPARE is: ${DIR} != ${HOME}/.dotfiles
+
+    if [ -e "${HOME}/.dotfiles" ]; then
+        mv ${HOME}/.dotfiles/ ${HOME}/.dotfiles_${dts}.bak
+        sleep 1
+    fi
+
+    mkdir ${HOME}/.dotfiles
+    cp -rf ${DIR}/* ${HOME}/.dotfiles
+    ${HOME}/.dotfiles/setup.sh
+    exit 0
 fi
-# Remove profile if currently a symlink
-if [[ -h ~/.bash_profile ]]; then
-  echo "Profile is symlinked, removing old link"
-  rm ~/.bash_profile
+
+
+########################################################
+### .bashrc
+########################################################
+if [ -e ~/.bashrc ]; then
+    echo Backing up .bashrc to: ~/.bashrc_${dts}.bak
+    mv ~/.bashrc ~/.bashrc_${dts}.bak
 fi
 
-
-# Symlink the repo's profile
 if [[ "$os" == "Linux" ]]; then
-  echo "Symlinking linux profile"
-  ln -s $DIR/linux/.bash_profile ~/.bash_profile
+    cp -f bash/linux/.bashrc ~/
 fi
+
+
+########################################################
+### Git
+########################################################
+echo Copying git dotfiles
+cp -f .git* ~/
 
 
 echo 'Done'
+exit 0

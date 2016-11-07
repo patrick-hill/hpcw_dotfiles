@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+export DIR_DROPBOX="${HOME}/Dropbox"
+export DIR_VM="${HOME}/vms"
+export DIR_SRC="${HOME}/src"
+export DIR_GAMES="${HOME}/games"
+export DIR_SCRIPTS="${HOME}/.dotfiles/scripts"
+
+export PATH="$PATH:${DIR_SCRIPTS}"

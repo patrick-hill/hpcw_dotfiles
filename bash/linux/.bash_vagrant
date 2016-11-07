@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+
+########################################################
+### Exports
+########################################################
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+
+
+########################################################
+### Aliases
+########################################################
+alias vup='vagrant up'
+alias vupv='vagrant up --provider=virtualbox'
+alias vdown='vagrant halt'
+alias vr='vagrant reload'
+alias vdes='vagrant destroy -f'
+alias vs='vagrant ssh'
+alias vstat='vagrant status'
+alias vpro='vagrant provision'
+alias vclean='vagrant global-status --prune'
+alias vpl='vagrant plugin list'
+alias vslist='vagrant snapshot list'
+alias vsnap=func_vSnapSave
+
+alias vroll=func_vSnapRestore
+alias vsdel=func_vSnapDelete
+alias vbl=func_vbl
+alias vba=func_vba
+alias vbr=func_vbr
+alias vbu=func_vbu
+
+
+########################################################
+### Functions
+########################################################
+
+func_vSnapSave() {
+    vagrant snapshot save $@
+}
+
+func_vSnapRestore() {
+  vagrant snapshot restore $@
+}
+
+func_vSnapDelete() {
+  vagrant snapshot delete $@
+}
+
+func_vbl() {
+  if [ -z $1 ];then
+    vagrant box list
+  else
+    vagrant box list | grep $1
+  fi
+}
+
+func_vba() {
+  for val in $@
+  do
+    vagrant box add $val $val
+  done
+}
+
+func_vbr() {
+  for val in $@
+  do
+    vagrant box remove -f $val
+  done
+}
+
+func_vbu() {
+  for val in $@
+  do
+    vbr $val
+    vba $val
+  done
+}
