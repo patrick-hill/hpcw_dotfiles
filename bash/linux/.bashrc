@@ -4,15 +4,13 @@
 ########################################################
 ### File managed via setup script from HPCW dotfiles
 ########################################################
-dotfiles_dir=
+dotfiles_dir=${HOME}/.dotfiles/bash/linux/.bash_profilexxxxx
 
 if [[ "$(uname)" == "Linux" ]]; then
+
     dotfiles_dir=${HOME}/.dotfiles/bash/linux/.bash_profile
-fi
 
-
-if [ -e ${dotfiles} ]; then
-    source ${dotfiles}
-else
-    echo Can't find file: ${dotfiles}
+    if [ -e $dotfiles_dir ]; then
+        source $dotfiles_dir
+    fi
 fi

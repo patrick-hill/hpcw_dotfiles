@@ -1,0 +1,5 @@
+[user]
+	email = Hill@HillsPCWorld.com
+	name = Patrick Hill
+[core]
+	excludesfile = /home/phill/.gitignore
