@@ -1,5 +1,41 @@
 #!/usr/bin/env bash
 
+########################################################
+### Functions: Checksums
+########################################################
+func_sha1() {
+  sha1sum $@
+}
+
+func_md5() {
+  md5sum $@
+}
+
+
+########################################################
+### Functions: Dir & Files
+########################################################
+func_cd() {
+  cd $1 && c
+}
+
+func_mdir() {
+  mkdir -p "$@" && cd "$_"
+}
+
+function fs() {
+	if du -b /dev/null > /dev/null 2>&1; then
+		local arg=-sbh;
+	else
+		local arg=-sh;
+	fi
+	if [[ -n "$@" ]]; then
+		du $arg -- "$@";
+	else
+		du $arg .[^.]* *;
+	fi;
+}
+
 
 ########################################################
 ### Navigation
@@ -19,8 +55,8 @@ alias cddl="func_cd ${HOME}/Downloads"
 ### Bash .dotfiles
 ########################################################
 alias src='source ${HOME}/.bashrc'
-alias editenv="code ${DIR_SRC}/hpcw/hpcw_env_setup"
-alias editprofile="code .dotfiles/"
+alias editenv="intellij ${DIR_SRC}/hpcw/hpcw_env_setup"
+alias editprofile="intellij ${DIR_SRC}/hpcw/hpcw_dotfiles/"
 
 
 ########################################################
@@ -45,8 +81,6 @@ alias root='sudo su - root'
 
 alias date='date +%d-%b-%Y'
 
-alias backup=func_backup
-alias diff=func_diff
 alias sha1=func_sha1
 alias md5=func_md5
 alias mdir=func_mdir

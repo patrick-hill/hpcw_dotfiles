@@ -4,7 +4,6 @@ source_bash_files() {
 
     declare -r -a FILES_TO_SOURCE=(
         ".bash_exports"
-        ".bash_functions"
         ".bash_aliases"
         ".bash_vagrant"
         ".bash_options"
