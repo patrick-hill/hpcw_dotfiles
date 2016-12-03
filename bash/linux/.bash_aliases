@@ -15,10 +15,6 @@ func_md5() {
 ########################################################
 ### Functions: Dir & Files
 ########################################################
-func_cd() {
-  cd $1 && c
-}
-
 func_mdir() {
   mkdir -p "$@" && cd "$_"
 }
@@ -40,15 +36,15 @@ function fs() {
 ########################################################
 ### Navigation
 ########################################################
-alias cdprofile="func_cd ${HOME}/.dotfiles"
-alias cdscripts="func_cd ${DIR_SCRIPTS}"
-alias cdsrc="func_cd ${DIR_SRC}"
-alias cdgames="func_cd ${DIR_GAMES}"
-alias cdenv="func_cd ${DIR_SRC}/hpcw/hpcw_env_setup"
-alias cdvm="func_cd ${DIR_VM}"
-alias cddb="func_cd ${DIR_DROPBOX}"
-alias cdd="func_cd ${HOME}/Documents"
-alias cddl="func_cd ${HOME}/Downloads"
+alias cdprofile="cd ${HOME}/.dotfiles; c; "
+alias cdscripts="cd ${DIR_SCRIPTS}; c; "
+alias cdsrc="cd ${DIR_SRC}; c; "
+alias cdgames="cd ${DIR_GAMES}; c; "
+alias cdenv="cd ${DIR_SRC}/hpcw/hpcw_env_setup; c; "
+alias cdvm="cd ${DIR_VM}; c; "
+alias cddb="cd ${DIR_DROPBOX}; c; "
+alias cdd="cd ${HOME}/Documents; c; "
+alias cddl="cd ${HOME}/Downloads; c; "
 
 
 ########################################################
