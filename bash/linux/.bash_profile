@@ -13,13 +13,12 @@ source_bash_files() {
 
         file="${HOME}/.dotfiles/bash/linux/${FILES_TO_SOURCE[$i]}"
 
-        [ -r "$file" ] \
-            && source "$file"
+        if [ -e "$file" ]; then
+            source "$file"
+        fi
 
     done
 }
 
 source_bash_files
 unset -f source_bash_files
-
-clear

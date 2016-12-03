@@ -3,9 +3,8 @@
 
 ########################################################
 ### File managed via setup script from HPCW dotfiles
+### https://github.com/patrick-hill/hpcw_dotfiles
 ########################################################
-dotfiles_dir=${HOME}/.dotfiles/bash/linux/.bash_profile
-
 if [[ "$(uname)" == "Linux" ]]; then
 
     dotfiles_dir=${HOME}/.dotfiles/bash/linux/.bash_profile
@@ -13,4 +12,5 @@ if [[ "$(uname)" == "Linux" ]]; then
     if [ -e $dotfiles_dir ]; then
         source $dotfiles_dir
     fi
+
 fi

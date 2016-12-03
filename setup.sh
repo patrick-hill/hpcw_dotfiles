@@ -14,16 +14,21 @@ echo
 
 
 ########################################################
-### .bashrc
+### .bashrc & .bash_profile
 ########################################################
-if [ -e ~/.bashrc ]; then
-    echo Backing up .bashrc to: ~/.bashrc_${dts}.bak
-    mv ~/.bashrc ~/.bashrc_${dts}.bak
+bash_files=( .bashrc .bash_profile )
+for i in "${bash_files[@]}"
+do
+    if [ -e ~/${i} ]; then
+        echo Backing up ${i} to: ~/${i}_${dts}.bak
+        mv ~/${i} ~/${i}_${dts}.bak
+    fi
+
+    if [[ "$os" == "Linux" ]]; then
+        cp -f bash/linux/${i} ~/${i}
 fi
 
-if [[ "$os" == "Linux" ]]; then
-    cp -f bash/linux/.bashrc ~/.bashrc
-fi
+done
 
 
 ########################################################
@@ -33,6 +38,12 @@ echo
 echo Copying git dotfiles
 cp -f git/.git* ~/
 
+########################################################
+### Sourcing
+########################################################
+echo
+echo Sourcing .bashrc
+source ~/.bashrc
 
 echo
 echo Setup complete
