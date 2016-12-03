@@ -4,7 +4,7 @@
 ########################################################
 ### File managed via setup script from HPCW dotfiles
 ########################################################
-dotfiles_dir=${HOME}/.dotfiles/bash/linux/.bash_profilexxxxx
+dotfiles_dir=${HOME}/.dotfiles/bash/linux/.bash_profile
 
 if [[ "$(uname)" == "Linux" ]]; then
 
