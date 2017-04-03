@@ -58,8 +58,9 @@ func_vbl() {
 func_vba() {
   for val in $@
   do
-    vagrant box add $val $val
+    vagrant box add "${val%.*}" $val
   done
+  func_vbl
 }
 
 func_vbr() {
