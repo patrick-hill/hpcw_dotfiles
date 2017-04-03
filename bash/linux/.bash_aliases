@@ -38,7 +38,7 @@ function fs() {
 ########################################################
 alias cdprofile="cd ${HOME}/.dotfiles; c; "
 alias cdscripts="cd ${DIR_SCRIPTS}; c; "
-alias cdsrc="cd ${DIR_SRC}\hpcw; c; "
+alias cdsrc="cd ${DIR_SRC}/hpcw; c; "
 alias cdgames="cd ${DIR_GAMES}; c; "
 alias cdenv="cd ${DIR_SRC}/hpcw/hpcw_env_setup; c; "
 alias cdvm="cd ${DIR_VM}; c; "
