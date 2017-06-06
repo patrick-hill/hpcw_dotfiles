@@ -7,3 +7,7 @@ export DIR_GAMES="${HOME}/games"
 export DIR_SCRIPTS="${HOME}/.dotfiles/scripts"
 
 export PATH="$PATH:${DIR_SCRIPTS}"
+
+
+#VMWare freeze fix
+export vblank_mode=0

@@ -51,8 +51,8 @@ alias cddl="cd ${HOME}/Downloads; c; "
 ### Bash .dotfiles
 ########################################################
 alias src='source ${HOME}/.bashrc'
-alias editenv="intellij ${DIR_SRC}/hpcw/hpcw_env_setup"
-alias editprofile="intellij ${DIR_SRC}/hpcw/hpcw_dotfiles/"
+alias editenv="code ${DIR_SRC}/hpcw/hpcw_env_setup"
+alias editprofile="code ${DIR_SRC}/hpcw/hpcw_dotfiles/"
 
 
 ########################################################
