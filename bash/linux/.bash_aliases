@@ -40,7 +40,7 @@ alias cdprofile="cd ${HOME}/.dotfiles; c; "
 alias cdscripts="cd ${DIR_SCRIPTS}; c; "
 alias cdsrc="cd ${DIR_SRC}/hpcw; c; "
 alias cdgames="cd ${DIR_GAMES}; c; "
-alias cdenv="cd ${DIR_SRC}/hpcw/hpcw_env_setup; c; "
+alias cdenv="cd ${DIR_SRC}/hpcw/provisioning/hpcw_env_setup; c; "
 alias cdvm="cd ${DIR_VM}; c; "
 alias cddb="cd ${DIR_DROPBOX}; c; "
 alias cdd="cd ${HOME}/Documents; c; "
@@ -51,8 +51,8 @@ alias cddl="cd ${HOME}/Downloads; c; "
 ### Bash .dotfiles
 ########################################################
 alias src='source ${HOME}/.bashrc'
-alias editenv="code ${DIR_SRC}/hpcw/hpcw_env_setup"
-alias editprofile="code ${DIR_SRC}/hpcw/hpcw_dotfiles/"
+alias editenv="code ${DIR_SRC}/hpcw/provisioning/hpcw_env_setup"
+alias editprofile="code ${DIR_SRC}/hpcw/provisioning/hpcw_dotfiles/"
 
 
 ########################################################
