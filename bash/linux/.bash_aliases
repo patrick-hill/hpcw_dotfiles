@@ -43,6 +43,7 @@ fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
+# http://misc.flogisoft.com/bash/tip_colors_and_formatting
 case "$TERM" in
 xterm*|rxvt*)
   PS1='\[\033[0;37m\][\t]\[\033[0;32m\][\u]\[\033[31m\][\h]\[\033[0;33m\]`git branch 2>/dev/null | grep \* | head -1 | sed "s/\* //g" | awk "{ print \"[ \"\\\$1 \" ]\" }"` \[\033[1;36m\]\w\a\[\033[0m\]\n\$ '
