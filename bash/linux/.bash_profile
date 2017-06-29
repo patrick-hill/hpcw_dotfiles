@@ -3,10 +3,10 @@
 source_bash_files() {
 
     declare -r -a FILES_TO_SOURCE=(
+        ".bash_options"
         ".bash_exports"
         ".bash_aliases"
         ".bash_vagrant"
-        ".bash_options"
     )
 
     for i in ${!FILES_TO_SOURCE[*]}; do
